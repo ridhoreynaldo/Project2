@@ -9,6 +9,7 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
+    // 🚀php artisan migrate --path=database/migrations/primary
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {

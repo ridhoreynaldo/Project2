@@ -1,0 +1,16 @@
+🚀 php artisan storage:link
+
+# FILE UPLOAD USER TIDAK PENTING KE IGNORE
+/storage/app/public/*
+# FILE UPLOAD PENTING TIDAK KE IGNORE 
+!/storage/app/public/assets/
+
+
+# Folder / File	                Fungsi	                                        Commit ke Git?
+# storage/app/public	            Folder asli file (user upload, aset statis)	    Kalau aset statis saja
+# public/storage	                Symlink ke folder asli	                        Jangan
+# File upload user	            Disimpan di storage/app/public                  Jangan
+
+# storage/app/public/avatar.jpg      ← file asli
+# public/storage/avatar.jpg          ← lewat browser/URL
+# Kalau di browser buka: http://domain.com/storage/avatar.jpg

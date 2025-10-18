@@ -1,0 +1,101 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36" version="27.0.9">
+  <diagram name="Page-1" id="Rb2J9THX12cleqw1yOLs">
+    <mxGraphModel dx="1024" dy="586" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="Cux7Y8DeIWsnFi-0cInU-20" value="Desain Sistem" style="swimlane;startSize=20;horizontal=1;containerType=tree;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontFamily=Times New Roman;fontSize=13;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="130" y="320" width="270" height="180" as="geometry" />
+        </mxCell>
+        <UserObject label="Flowchart" treeRoot="1" id="Cux7Y8DeIWsnFi-0cInU-21">
+          <mxCell style="whiteSpace=wrap;html=1;align=center;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontFamily=Times New Roman;fontSize=13;strokeWidth=2;" vertex="1" parent="Cux7Y8DeIWsnFi-0cInU-20">
+            <mxGeometry x="10" y="40" width="120" height="60" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="UML" treeRoot="1" id="Cux7Y8DeIWsnFi-0cInU-22">
+          <mxCell style="whiteSpace=wrap;html=1;align=center;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontFamily=Times New Roman;fontSize=13;strokeWidth=2;" vertex="1" parent="Cux7Y8DeIWsnFi-0cInU-20">
+            <mxGeometry x="140" y="40" width="120" height="60" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="Desain Antarmuka&lt;br&gt;Pengguna" treeRoot="1" id="Cux7Y8DeIWsnFi-0cInU-23">
+          <mxCell style="whiteSpace=wrap;html=1;align=center;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontFamily=Times New Roman;fontSize=13;strokeWidth=2;" vertex="1" parent="Cux7Y8DeIWsnFi-0cInU-20">
+            <mxGeometry x="10" y="110" width="120" height="60" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="Perancangan&lt;br&gt;Database" treeRoot="1" id="Cux7Y8DeIWsnFi-0cInU-24">
+          <mxCell style="whiteSpace=wrap;html=1;align=center;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontFamily=Times New Roman;fontSize=13;strokeWidth=2;" vertex="1" parent="Cux7Y8DeIWsnFi-0cInU-20">
+            <mxGeometry x="140" y="110" width="120" height="60" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="Cux7Y8DeIWsnFi-0cInU-25" value="Penerapan" style="swimlane;startSize=20;horizontal=1;containerType=tree;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontFamily=Times New Roman;fontSize=13;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="130" y="530" width="270" height="110" as="geometry" />
+        </mxCell>
+        <UserObject label="Perhitungan&lt;br&gt;Manual Algoritma" treeRoot="1" id="Cux7Y8DeIWsnFi-0cInU-26">
+          <mxCell style="whiteSpace=wrap;html=1;align=center;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontFamily=Times New Roman;fontSize=13;strokeWidth=2;" vertex="1" parent="Cux7Y8DeIWsnFi-0cInU-25">
+            <mxGeometry x="10" y="40" width="120" height="60" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="Antarmuka&lt;br&gt;Pengguna" treeRoot="1" id="Cux7Y8DeIWsnFi-0cInU-27">
+          <mxCell style="whiteSpace=wrap;html=1;align=center;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontFamily=Times New Roman;fontSize=13;strokeWidth=2;" vertex="1" parent="Cux7Y8DeIWsnFi-0cInU-25">
+            <mxGeometry x="140" y="40" width="120" height="60" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="Cux7Y8DeIWsnFi-0cInU-31" value="Pengujian" style="swimlane;startSize=20;horizontal=1;containerType=tree;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontFamily=Times New Roman;fontSize=13;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="130" y="670" width="270" height="180" as="geometry" />
+        </mxCell>
+        <UserObject label="Pengujian&lt;br&gt;Fungsional Sistem" treeRoot="1" id="Cux7Y8DeIWsnFi-0cInU-32">
+          <mxCell style="whiteSpace=wrap;html=1;align=center;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontFamily=Times New Roman;fontSize=13;strokeWidth=2;" vertex="1" parent="Cux7Y8DeIWsnFi-0cInU-31">
+            <mxGeometry x="10" y="40" width="120" height="60" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="Evaluasi&lt;br&gt;Fungsional Sistem" treeRoot="1" id="Cux7Y8DeIWsnFi-0cInU-33">
+          <mxCell style="whiteSpace=wrap;html=1;align=center;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontFamily=Times New Roman;fontSize=13;strokeWidth=2;" vertex="1" parent="Cux7Y8DeIWsnFi-0cInU-31">
+            <mxGeometry x="140" y="40" width="120" height="60" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="Perbandingan&lt;br&gt;Manual dan Sistem" treeRoot="1" id="Cux7Y8DeIWsnFi-0cInU-35">
+          <mxCell style="whiteSpace=wrap;html=1;align=center;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontFamily=Times New Roman;fontSize=13;strokeWidth=2;" vertex="1" parent="Cux7Y8DeIWsnFi-0cInU-31">
+            <mxGeometry x="75" y="110" width="120" height="60" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="Cux7Y8DeIWsnFi-0cInU-39" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;strokeWidth=2;" edge="1" parent="1" source="Cux7Y8DeIWsnFi-0cInU-43" target="Cux7Y8DeIWsnFi-0cInU-20">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="265" y="290" as="sourcePoint" />
+            <mxPoint x="360" y="230" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Cux7Y8DeIWsnFi-0cInU-41" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;strokeWidth=2;" edge="1" parent="1" source="Cux7Y8DeIWsnFi-0cInU-20" target="Cux7Y8DeIWsnFi-0cInU-25">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="310" y="330" as="sourcePoint" />
+            <mxPoint x="310" y="360" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Cux7Y8DeIWsnFi-0cInU-42" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;strokeWidth=2;" edge="1" parent="1" source="Cux7Y8DeIWsnFi-0cInU-25" target="Cux7Y8DeIWsnFi-0cInU-31">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="380" y="510" as="sourcePoint" />
+            <mxPoint x="380" y="540" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Cux7Y8DeIWsnFi-0cInU-43" value="Analisis Kebutuhan" style="swimlane;startSize=20;horizontal=1;containerType=tree;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontFamily=Times New Roman;fontSize=13;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="130" y="110" width="270" height="180" as="geometry" />
+        </mxCell>
+        <UserObject label="Identifikasi Masalah" treeRoot="1" id="Cux7Y8DeIWsnFi-0cInU-44">
+          <mxCell style="whiteSpace=wrap;html=1;align=center;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontFamily=Times New Roman;fontSize=13;strokeWidth=2;" vertex="1" parent="Cux7Y8DeIWsnFi-0cInU-43">
+            <mxGeometry x="10" y="40" width="120" height="60" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="Teknik Pengumpulan Data" treeRoot="1" id="Cux7Y8DeIWsnFi-0cInU-45">
+          <mxCell style="whiteSpace=wrap;html=1;align=center;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontFamily=Times New Roman;fontSize=13;strokeWidth=2;" vertex="1" parent="Cux7Y8DeIWsnFi-0cInU-43">
+            <mxGeometry x="140" y="40" width="120" height="60" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="Analisis Data" treeRoot="1" id="Cux7Y8DeIWsnFi-0cInU-46">
+          <mxCell style="whiteSpace=wrap;html=1;align=center;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontFamily=Times New Roman;fontSize=13;strokeWidth=2;" vertex="1" parent="Cux7Y8DeIWsnFi-0cInU-43">
+            <mxGeometry x="75" y="110" width="120" height="60" as="geometry" />
+          </mxCell>
+        </UserObject>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
