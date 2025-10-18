@@ -50,3 +50,9 @@ docker system prune -a --volumes
 ###### build ulang dan restart
 docker-compose build --no-cache app
 docker-compose restart app
+
+
+###### perbaiki env dll 
+php artisan config:clear
+php artisan tinker
+>>> DB::connection('sqlsrv')->getPdo();

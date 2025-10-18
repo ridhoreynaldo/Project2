@@ -1,67 +1,3 @@
-# version: '3.8'
-
-# services:
-#   app:
-#     build:
-#       context: .
-#       dockerfile: Dockerfile
-#     container_name: laravel_app
-#     restart: unless-stopped
-#     working_dir: /var/www/html
-#     environment:
-#       - DB_CONNECTION=sqlsrv
-#       - DB_HOST=host.docker.internal
-#       - DB_PORT=1433
-#       - DB_DATABASE=dbAsset
-#       - DB_USERNAME=${DB_USERNAME:-sa}
-#       - DB_PASSWORD=${DB_PASSWORD:-}
-      
-#       - DB_QUINARY_CONNECTION=sqlsrv
-#       - DB_QUINARY_HOST=host.docker.internal
-#       - DB_QUINARY_PORT=1433
-#       - DB_QUINARY_DATABASE=dbAsrama
-#       - DB_QUINARY_USERNAME=${DB_QUINARY_USERNAME:-sa}
-#       - DB_QUINARY_PASSWORD=${DB_QUINARY_PASSWORD:-}
-      
-#       - DB_SECONDARY_CONNECTION=sqlsrv
-#       - DB_SECONDARY_HOST=192.168.3.251
-#       - DB_SECONDARY_PORT=85
-#       - DB_SECONDARY_DATABASE=qualitydb
-#       - DB_SECONDARY_USERNAME=${DB_SECONDARY_USERNAME:-}
-#       - DB_SECONDARY_PASSWORD=${DB_SECONDARY_PASSWORD:-}
-#     volumes:
-#       - ./:/var/www/html
-#     networks:
-#       - laravel
-
-#   nginx:
-#     image: nginx:alpine
-#     container_name: laravel_nginx
-#     restart: unless-stopped
-#     ports:
-#       - "8000:80"
-#       - "443:443"
-#     volumes:
-#       - ./:/var/www/html
-#       - ./docker/nginx/conf.d:/etc/nginx/conf.d
-#       - ./docker/nginx/ssl:/etc/nginx/ssl
-#     networks:
-#       - laravel
-#     depends_on:
-#       - app
-
-#   redis:
-#     image: redis:7-alpine
-#     container_name: laravel_redis
-#     restart: unless-stopped
-#     ports:
-#       - "6379:6379"
-#     networks:
-#       - laravel
-
-# networks:
-#   laravel:
-#     driver: bridge
 version: '3.8'
 
 services:
@@ -73,47 +9,36 @@ services:
     restart: unless-stopped
     working_dir: /var/www/html
     environment:
+      # 🔹 Koneksi utama ke SQL Server eksternal
       - DB_CONNECTION=sqlsrv
-      - DB_HOST=mssql
-      - DB_PORT=1433
+      - DB_HOST=192.168.3.8
+      - DB_PORT=78
       - DB_DATABASE=dbAsset
-      - DB_USERNAME=SA
-      - DB_PASSWORD=YourStrong@Password123
-      
+      - DB_USERNAME=asset
+      - DB_PASSWORD=j3mburiT4_
+
+      # 🔹 Koneksi kedua (QUINARY)
       - DB_QUINARY_CONNECTION=sqlsrv
-      - DB_QUINARY_HOST=mssql
-      - DB_QUINARY_PORT=1433
+      - DB_QUINARY_HOST=192.168.3.8
+      - DB_QUINARY_PORT=78
       - DB_QUINARY_DATABASE=dbAsrama
-      - DB_QUINARY_USERNAME=SA
-      - DB_QUINARY_PASSWORD=YourStrong@Password123
-      
+      - DB_QUINARY_USERNAME=asset
+      - DB_QUINARY_PASSWORD=j3mburiT4_
+
+      # 🔹 Koneksi ketiga (SECONDARY)
       - DB_SECONDARY_CONNECTION=sqlsrv
       - DB_SECONDARY_HOST=192.168.3.251
       - DB_SECONDARY_PORT=85
       - DB_SECONDARY_DATABASE=qualitydb
-      - DB_SECONDARY_USERNAME=${DB_SECONDARY_USERNAME:-}
-      - DB_SECONDARY_PASSWORD=${DB_SECONDARY_PASSWORD:-}
+      - DB_SECONDARY_USERNAME=$$ButuhLibur7654!!##
+      - DB_SECONDARY_PASSWORD=T3n!m@nuK76+_
+
     volumes:
       - ./:/var/www/html
     networks:
       - laravel
-    depends_on:
-      - mssql
-
-  mssql:
-    image: mcr.microsoft.com/mssql/server:2022-latest
-    container_name: laravel_mssql
-    restart: unless-stopped
-    environment:
-      - ACCEPT_EULA=Y
-      - SA_PASSWORD=YourStrong@Password123
-      - MSSQL_PID=Express
-    ports:
-      - "1433:1433"
-    networks:
-      - laravel
-    volumes:
-      - mssql_data:/var/opt/mssql
+    extra_hosts:
+      - "host.docker.internal:host-gateway"  # penting agar bisa akses IP LAN dari dalam container
 
   nginx:
     image: nginx:alpine
@@ -127,6 +52,8 @@ services:
       - ./docker/nginx/conf.d:/etc/nginx/conf.d
     networks:
       - laravel
+    depends_on:
+      - app
 
   redis:
     image: redis:7-alpine
@@ -140,6 +67,3 @@ services:
 networks:
   laravel:
     driver: bridge
-
-volumes:
-  mssql_data:

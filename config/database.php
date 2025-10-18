@@ -123,6 +123,8 @@ return [
             'prefix_indexes' => true,
             // 'encrypt' => env('DB_ENCRYPT', 'yes'),
             // 'trust_server_certificate' => env('DB_TRUST_SERVER_CERTIFICATE', 'false'),
+            'encrypt' => env('DB_ENCRYPT', 'no'),
+            'trust_server_certificate' => env('DB_TRUST_SERVER_CERTIFICATE', true),
         ],
         'secondary_sqlsrv' => [
             'driver' => 'sqlsrv',
@@ -137,6 +139,8 @@ return [
             'prefix_indexes' => true,
             // 'encrypt' => env('DB_ENCRYPT', 'yes'),
             // 'trust_server_certificate' => env('DB_TRUST_SERVER_CERTIFICATE', 'false'),
+            'encrypt' => env('DB_SECONDARY_ENCRYPT', 'no'),
+            'trust_server_certificate' => env('DB_SECONDARY_TRUST_SERVER_CERTIFICATE', true),
         ],
         'tertiary_sqlsrv' => [
             'driver' => 'sqlsrv',
@@ -151,6 +155,8 @@ return [
             'prefix_indexes' => true,
             // 'encrypt' => env('DB_ENCRYPT', 'yes'),
             // 'trust_server_certificate' => env('DB_TRUST_SERVER_CERTIFICATE', 'false'),
+            'encrypt' => env('DB_TERTIARY_ENCRYPT', 'no'),
+            'trust_server_certificate' => env('DB_TERTIARY_TRUST_SERVER_CERTIFICATE', true),
         ],
         'quaternary_sqlsrv' => [
             'driver' => 'sqlsrv',
@@ -165,6 +171,8 @@ return [
             'prefix_indexes' => true,
             // 'encrypt' => env('DB_ENCRYPT', 'yes'),
             // 'trust_server_certificate' => env('DB_TRUST_SERVER_CERTIFICATE', 'false'),
+            'encrypt' => env('DB_QUATERNARY_ENCRYPT', 'no'),
+            'trust_server_certificate' => env('DB_QUATERNARY_TRUST_SERVER_CERTIFICATE', true),
         ],
         'quinary_sqlsrv' => [
             'driver' => 'sqlsrv',
@@ -179,6 +187,8 @@ return [
             'prefix_indexes' => true,
             // 'encrypt' => env('DB_ENCRYPT', 'yes'),
             // 'trust_server_certificate' => env('DB_TRUST_SERVER_CERTIFICATE', 'false'),
+            'encrypt' => env('DB_QUINARY_ENCRYPT', 'no'),
+            'trust_server_certificate' => env('DB_QUINARY_TRUST_SERVER_CERTIFICATE', true),
         ],
     ],
 

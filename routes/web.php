@@ -19,6 +19,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/infophp', function () {
+    phpinfo();
+});
+
+
 // ⚙️ 🟩Setting Route (/routes/web.php)
 // Login & Logout Form
 // Dashboard View
