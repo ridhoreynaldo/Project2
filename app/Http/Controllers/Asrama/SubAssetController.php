@@ -85,7 +85,7 @@ class SubAssetController extends Controller
 
     public function showComplete($id_asset)
     {
-        // STEP 1: Ambil semua subasset (1 query)
+        // 1️⃣ Ambil semua subasset
         $subassets = DB::connection('sqlsrv')
             ->table('sub_assets')
             ->where('id_assets', $id_asset)
@@ -94,45 +94,71 @@ class SubAssetController extends Controller
         if ($subassets->isEmpty()) {
             return response()->json(['message' => 'Subasset tidak ditemukan'], 404);
         }
-        
-        // Ambil semua ID subasset untuk klausa WHERE IN
+
         $subassetIds = $subassets->pluck('id');
 
-        // STEP 2: Ambil SEMUA detail yang relevan dalam satu kali jalan (1 query)
+        // 2️⃣ Ambil semua detail subasset
         $allDetails = DB::connection('quinary_sqlsrv')
             ->table('subasset_detail')
             ->whereIn('id_sub_assets', $subassetIds)
             ->get()
-            ->keyBy('id_sub_assets'); // Jadikan id_sub_assets sebagai key agar mudah dicari
+            ->keyBy('id_sub_assets');
 
-        // STEP 3: Ambil SEMUA barang yang relevan dalam satu kali jalan (1 query)
+        // 3️⃣ Ambil semua barang yang terhubung ke subasset
         $allBarangs = DB::connection('sqlsrv')
             ->table('barangs as b')
             ->join('orders as o', 'o.id_barang', '=', 'b.id')
             ->join('barang_label as bl', 'bl.id_orders', '=', 'o.id')
             ->where('bl.id_lokasi', $id_asset)
-            ->whereIn('bl.id_subAsset', $subassetIds) // Gunakan whereIn
-            ->select('b.id', 'b.nama', 'bl.id_subAsset', DB::raw('COUNT(o.id) as jumlah_order'))
-            ->groupBy('b.id', 'b.nama', 'bl.id_subAsset')
+            ->whereIn('bl.id_subAsset', $subassetIds)
+            ->select(
+                'b.id',
+                'b.nama',
+                'o.id as id_orders',
+                'bl.id_subAsset',
+                DB::raw('COUNT(o.id) as jumlah_order')
+            )
+            ->groupBy('b.id', 'b.nama', 'o.id', 'bl.id_subAsset')
             ->get()
-            ->groupBy('id_subAsset'); // Kelompokkan berdasarkan id_subAsset
+            ->groupBy('id_subAsset');
 
-        // STEP 4: Ambil SEMUA foto yang relevan dalam satu kali jalan (1 query)
-        $allFotos = DB::connection('quinary_sqlsrv')
-            ->table('list_foto')
-            ->whereIn('id_sub_assets', $subassetIds) // Gunakan whereIn
+        // 4️⃣ Ambil foto SUBASSET dari documents
+        $allSubassetFotos = DB::connection('sqlsrv')
+            ->table('documents')
+            ->whereIn('related_id', $subassetIds)
             ->get()
-            ->groupBy('id_sub_assets'); // Kelompokkan berdasarkan id_sub_assets
+            ->groupBy('related_id');
 
-        // STEP 5: Gabungkan semua data yang sudah diambil (tanpa query lagi)
-        $data = $subassets->map(function ($subasset) use ($allDetails, $allBarangs, $allFotos) {
+        // 5️⃣ Ambil foto BARANG dari dok_orders (berdasarkan id_orders)
+        $orderIds = $allBarangs->flatten()->pluck('id_orders')->unique();
+        $allBarangFotos = DB::connection('sqlsrv')
+            ->table('dok_orders')
+            ->whereIn('id_orders', $orderIds)
+            ->get()
+            ->groupBy('id_orders');
+
+        // 6️⃣ Gabungkan semua hasil
+        $data = $subassets->map(function ($subasset) use ($allDetails, $allBarangs, $allSubassetFotos, $allBarangFotos) {
+            $barangs = $allBarangs[$subasset->id] ?? collect();
+
+            // Tambahkan foto barang di setiap barang
+            $barangsWithFotos = $barangs->map(function ($barang) use ($allBarangFotos) {
+                return [
+                    'id' => $barang->id,
+                    'nama' => $barang->nama,
+                    'id_orders' => $barang->id_orders, // ✅ tambahkan di sini
+                    'jumlah_order' => $barang->jumlah_order,
+                    'fotos_barang' => $allBarangFotos[$barang->id_orders] ?? [],
+                ];
+            });
+
             return [
                 'id' => $subasset->id,
                 'nama_subAsset' => $subasset->nama_subAsset ?? null,
                 'kapasitas' => $allDetails[$subasset->id]->kapasitas ?? null,
                 'ket' => $allDetails[$subasset->id]->ket ?? null,
-                'barangs' => $allBarangs[$subasset->id] ?? [], // Ambil dari koleksi barang
-                'fotos' => $allFotos[$subasset->id] ?? [],   // Ambil dari koleksi foto
+                'barangs' => $barangsWithFotos,
+                'fotos_subasset' => $allSubassetFotos[$subasset->id] ?? [],
             ];
         });
 
@@ -146,7 +172,7 @@ class SubAssetController extends Controller
     public function showCompleteDetail($id_asset, $id_sub_asset)
     {
         try {
-            // 1. Cari SATU subasset spesifik
+            // 1️⃣ Ambil subasset spesifik
             $subasset = DB::connection('sqlsrv')
                 ->table('sub_assets')
                 ->where('id_assets', $id_asset)
@@ -154,47 +180,70 @@ class SubAssetController extends Controller
                 ->first();
 
             if (!$subasset) {
-                return response()->json(['message' => 'Subasset spesifik tidak ditemukan'], 404);
+                return response()->json(['message' => 'Subasset tidak ditemukan'], 404);
             }
 
-            // 2. Ambil detail
+            // 2️⃣ Ambil detail
             $detail = DB::connection('quinary_sqlsrv')
                 ->table('subasset_detail')
                 ->where('id_sub_assets', $id_sub_asset)
                 ->first();
 
-            // 3. Ambil barang-barang
+            // 3️⃣ Ambil barang-barang
             $barangs = DB::connection('sqlsrv')
                 ->table('barangs as b')
                 ->join('orders as o', 'o.id_barang', '=', 'b.id')
                 ->join('barang_label as bl', 'bl.id_orders', '=', 'o.id')
                 ->where('bl.id_lokasi', $id_asset)
                 ->where('bl.id_subAsset', $id_sub_asset)
-                ->select('b.id', 'b.nama', DB::raw('COUNT(o.id) as jumlah_order'))
-                ->groupBy('b.id', 'b.nama')
-                ->get();
-                
-            // ✅ [TAMBAHAN] Ambil foto-foto untuk subasset ini
-            $fotos = DB::connection('quinary_sqlsrv')
-                ->table('list_foto')
-                ->where('id_sub_assets', $id_sub_asset)
+                ->select(
+                    'b.id',
+                    'b.nama',
+                    'o.id as id_orders',
+                    DB::raw('COUNT(o.id) as jumlah_order')
+                )
+                ->groupBy('b.id', 'b.nama', 'o.id')
                 ->get();
 
-            // 4. Susun data respons
+            // 4️⃣ Ambil foto subasset dari documents
+            $fotosSubasset = DB::connection('sqlsrv')
+                ->table('documents')
+                ->where('related_id', $id_sub_asset)
+                ->get();
+
+            // 5️⃣ Ambil foto barang dari dok_orders
+            $orderIds = $barangs->pluck('id_orders')->unique();
+            $fotosBarang = DB::connection('sqlsrv')
+                ->table('dok_orders')
+                ->whereIn('id_orders', $orderIds)
+                ->get()
+                ->groupBy('id_orders');
+
+            // 6️⃣ Tambahkan foto barang ke setiap item
+            $barangsWithFotos = $barangs->map(function ($barang) use ($fotosBarang) {
+                return [
+                    'id' => $barang->id,
+                    'nama' => $barang->nama,
+                    'id_orders' => $barang->id_orders, // ✅ tambahkan di sini juga
+                    'jumlah_order' => $barang->jumlah_order,
+                    'fotos_barang' => $fotosBarang[$barang->id_orders] ?? [],
+                ];
+            });
+
+            // 7️⃣ Susun data final
             $data = [
                 'id' => $subasset->id,
                 'nama_subAsset' => $subasset->nama_subAsset ?? null,
                 'kapasitas' => $detail->kapasitas ?? null,
                 'ket' => $detail->ket ?? null,
-                'barangs' => $barangs,
-                'fotos' => $fotos, // ✅ [TAMBAHAN] Masukkan data foto ke response
+                'barangs' => $barangsWithFotos,
+                'fotos_subasset' => $fotosSubasset,
             ];
 
             return response()->json([
                 'status' => 'success',
                 'data' => $data,
             ]);
-
         } catch (\Throwable $e) {
             return response()->json([
                 'status' => 'error',
@@ -203,6 +252,7 @@ class SubAssetController extends Controller
             ], 500);
         }
     }
+
     
     public function insertOrUpdateDetail(Request $request, $id_sub_assets)
     {

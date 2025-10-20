@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::connection('quinary_sqlsrv')->create('list_foto', function (Blueprint $table) {
+        Schema::connection('quinary_sqlsrv')->create('mahasiswa_detail', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_sub_assets'); // FK ke subasset
-            $table->string('foto');
+            $table->unsignedBigInteger('NPM'); // FK ke mahasiswa
+            $table->string('emergancy_call');
             $table->timestamps();
         });
     }
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::connection('quinary_sqlsrv')->dropIfExists('list_foto');
+        Schema::connection('quinary_sqlsrv')->dropIfExists('mahasiswa_detail');
     }
 };

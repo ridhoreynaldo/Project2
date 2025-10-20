@@ -3,16 +3,15 @@
 use App\Http\Controllers\Asrama\BarangController;
 use App\Http\Controllers\Asrama\GetDataControllerController;
 use App\Http\Controllers\Asrama\DashboardController;
-use App\Http\Controllers\Asrama\FotoKamarController;
 use App\Http\Controllers\Asrama\GetDataController;
+use App\Http\Controllers\Asrama\HunianController;
 use App\Http\Controllers\Asrama\MahasiswaController;
 use App\Http\Controllers\Asrama\PeriodeHargaController;
 use App\Http\Controllers\Asrama\SubAssetController;
-use App\Http\Controllers\Asrama\SubAssetDetailController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-// USED////////////////////////////////////////////////////////////////
+// 🟢
 // Lokasi = No Input --> Sub Lokasi = No Input --> Asset = Asrama(2125) --> Sub Asset = Kamar(All)
 Route::get('asrama/jumlah-data', [DashboardController::class, 'getjumlahData']);                                       //Show Jumlah Data
 
@@ -36,12 +35,12 @@ Route::patch('asrama/sub-asset/detail/{id_sub_assets}', [SubAssetController::cla
     // Route::put('sub-asset/barang/{id_barang}', [BarangController::class, 'updateBarang']);                   //Master Data
     // Route::delete('sub-asset/barang/{id_barang}', [BarangController::class, 'deleteBarang']);                //Master Data
     
-    // Foto Kamar (m:1) <- Sub Asset
-    // Route::get('sub-asset/foto', [FotoKamarController::class, 'index']);
-    Route::get('asrama/sub-asset/foto/{id_sub_assets}', [FotoKamarController::class, 'showBySubAsset']);
-    Route::post('asrama/sub-asset/foto/{id_sub_assets}', [FotoKamarController::class, 'storeBySubAsset']);
-    Route::put('asrama/sub-asset/foto/{id_foto}', [FotoKamarController::class, 'update']);
-    Route::delete('asrama/sub-asset/foto/{id_foto}', [FotoKamarController::class, 'delete']);
+    // Foto Kamar (?:?) <- Sub Asset
+    Route::get('asrama/sub-asset/foto/{id_assets}/{id_sub_assets}', [FotoController::class, 'indexByAssetAndSubAsset']);
+    // Route::get('asrama/sub-asset/foto/{id_sub_assets}', [FotoKamarController::class, 'showBySubAsset']);     //
+    // Route::post('asrama/sub-asset/foto/{id_sub_assets}', [FotoKamarController::class, 'storeBySubAsset']);   //Master Data
+    // Route::put('asrama/sub-asset/foto/{id_foto}', [FotoKamarController::class, 'update']);                   //Master Data
+    // Route::delete('asrama/sub-asset/foto/{id_foto}', [FotoKamarController::class, 'delete']);                //Master Data
 
 // Mahasiswa
 // Route::get('mahasiswa', [MahasiswaController::class, 'index']);
@@ -57,7 +56,14 @@ Route::post('asrama/periode-harga/', [PeriodeHargaController::class, 'store']);
 Route::put('asrama/periode-harga/{id_sub_assets}', [PeriodeHargaController::class, 'update']);
 Route::delete('asrama/periode-harga/{id_sub_assets}', [PeriodeHargaController::class, 'delete']);
 
-//🔴
+// 🟡
+// Hunian
+Route::post('asrama/hunian/filter', [HunianController::class, 'filter'])->name('asrama.hunian.filter');
+Route::post('asrama/hunian/store', [HunianController::class, 'store'])->name('asrama.hunian.store');
+Route::put('/hunian/update-webhook', [HunianController::class, 'updateWebhook']);
+Route::put('/hunian/update-sub-asset', [HunianController::class, 'updateSubAsset']);
+
+// 🔴
 // Pemesanan
 Route::get('pemesanan', [PemesananController::class, 'indexSubAsset']); // Show All SubAsset with Detail
 Route::get('pemesanan/{id_sub_assets}', [PemesananController::class, 'showSubAsset']); // Show 1 SubAsset with Detail
@@ -65,19 +71,10 @@ Route::post('pemesanan/{id_sub_assets}', [PemesananController::class, 'storeSubA
 Route::put('pemesanan/{id_sub_assets}', [PemesananController::class, 'updateSubAsset']); // Edit SubAsset
 
 // API Payment Gateway
-// Service to get to set
+// Your API / Webhook / Payment
 
 // Transaksi
 Route::get('transaksi', [TransaksiController::class, 'indexSubAsset']); // Show All SubAsset with Detail
 Route::get('transaksi/{?}', [TransaksiController::class, 'showSubAsset']); // Show 1 SubAsset with Detail
 Route::post('sub-asset/{?}', [TransaksiController::class, 'storeSubAsset']); // Insert SubAsset
 Route::put('sub-asset/{?}', [TransaksiController::class, 'updateSubAsset']); // Edit SubAsset
-
-// Route::middleware('api')->group(function () {
-//     Route::get('/test', function () {
-//         return response()->json(['message' => 'API route aktif!']);
-//     });
-// });
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });

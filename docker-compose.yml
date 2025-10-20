@@ -30,7 +30,7 @@ services:
       - DB_SECONDARY_HOST=192.168.3.251
       - DB_SECONDARY_PORT=85
       - DB_SECONDARY_DATABASE=qualitydb
-      - DB_SECONDARY_USERNAME=$$ButuhLibur7654!!##
+      - DB_SECONDARY_USERNAME="$$$$ButuhLibur7654!!##"
       - DB_SECONDARY_PASSWORD=T3n!m@nuK76+_
 
     volumes:

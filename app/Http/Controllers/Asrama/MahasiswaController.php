@@ -22,8 +22,6 @@ class MahasiswaController extends Controller
             return response()->json($validator->errors(), 422);
         }
 
-        // 2. Mulai Query Builder
-        // Ganti 'mahasiswa' dengan nama tabel Anda yang sebenarnya
         $query = DB::connection('secondary_sqlsrv')->table('mahasiswa');
 
         // 3. Terapkan filter secara dinamis menggunakan when()
@@ -37,19 +35,16 @@ class MahasiswaController extends Controller
         });
 
         $query->when($request->filled('universitas'), function ($q) use ($request) {
-            // Gunakan 'like' untuk pencarian yang lebih fleksibel
             return $q->where('UNIVERSITAS', 'like', '%' . $request->input('universitas') . '%');
         });
 
-        // 4. Eksekusi query dan ambil hasilnya
-        // $results = $query->get(); //semua kolom
         $results = $query->select('NPM', 'NAMA','STATUSMHS','JENISKELAMIN','UNIVERSITAS','HP','ALAMAT','nik','NAMAAYAH','NAMAIBU','nomor_ortu','TGLMASUK',
         'TGLLAHIR','PRODI','STAMBUK','AGAMA')->get();//,'IDFAKULTAS'
 
         // 5. Kembalikan respons
         return response()->json([
             'status' => 'success',
-            'count' => $results->count(), // Jumlah data yang ditemukan
+            'count' => $results->count(),
             'data' => $results,
         ]);
     }
