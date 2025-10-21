@@ -23,10 +23,8 @@ Route::get('/infophp', function () {
     phpinfo();
 });
 
-
-// ⚙️ 🟩Setting Route (/routes/web.php)
-// Login & Logout Form
-// Dashboard View
-// Profile
-// List Kamar Asrama
-// List Histori Pemesanan
+Route::view('/asrama/mahasiswa/login', 'welcome');
+Route::view('/asrama/mahasiswa/profil', 'welcome');
+Route::view('/asrama/mahasiswa/daftar', 'welcome');
+Route::view('/asrama/mahasiswa/list-kamar', 'welcome');
+Route::view('/asrama/mahasiswa/list-history-pemesanan', 'welcome');
