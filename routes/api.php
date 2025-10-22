@@ -36,7 +36,7 @@ Route::patch('asrama/sub-asset/detail/{id_sub_assets}', [SubAssetController::cla
     // Route::delete('sub-asset/barang/{id_barang}', [BarangController::class, 'deleteBarang']);                //Master Data
     
     // Foto Kamar (?:?) <- Sub Asset
-    Route::get('asrama/sub-asset/foto/{id_assets}/{id_sub_assets}', [FotoController::class, 'indexByAssetAndSubAsset']);
+    // Route::get('asrama/sub-asset/foto/{id_assets}/{id_sub_assets}', [FotoController::class, 'indexByAssetAndSubAsset']);
     // Route::get('asrama/sub-asset/foto/{id_sub_assets}', [FotoKamarController::class, 'showBySubAsset']);     //
     // Route::post('asrama/sub-asset/foto/{id_sub_assets}', [FotoKamarController::class, 'storeBySubAsset']);   //Master Data
     // Route::put('asrama/sub-asset/foto/{id_foto}', [FotoKamarController::class, 'update']);                   //Master Data
@@ -69,16 +69,16 @@ Route::put('/hunian/update-sub-asset', [HunianController::class, 'updateSubAsset
 
 // 🔴
 // Pemesanan
-Route::get('pemesanan', [PemesananController::class, 'indexSubAsset']); // Show All SubAsset with Detail
-Route::get('pemesanan/{id_sub_assets}', [PemesananController::class, 'showSubAsset']); // Show 1 SubAsset with Detail
-Route::post('pemesanan/{id_sub_assets}', [PemesananController::class, 'storeSubAsset']); // Insert SubAsset
-Route::put('pemesanan/{id_sub_assets}', [PemesananController::class, 'updateSubAsset']); // Edit SubAsset
+// Route::get('pemesanan', [PemesananController::class, 'indexSubAsset']); // Show All SubAsset with Detail
+// Route::get('pemesanan/{id_sub_assets}', [PemesananController::class, 'showSubAsset']); // Show 1 SubAsset with Detail
+// Route::post('pemesanan/{id_sub_assets}', [PemesananController::class, 'storeSubAsset']); // Insert SubAsset
+// Route::put('pemesanan/{id_sub_assets}', [PemesananController::class, 'updateSubAsset']); // Edit SubAsset
 
 // API Payment Gateway
 // Your API / Webhook / Payment
 
 // Transaksi
-Route::get('transaksi', [TransaksiController::class, 'indexSubAsset']); // Show All SubAsset with Detail
-Route::get('transaksi/{?}', [TransaksiController::class, 'showSubAsset']); // Show 1 SubAsset with Detail
-Route::post('sub-asset/{?}', [TransaksiController::class, 'storeSubAsset']); // Insert SubAsset
-Route::put('sub-asset/{?}', [TransaksiController::class, 'updateSubAsset']); // Edit SubAsset
+// Route::get('transaksi', [TransaksiController::class, 'indexSubAsset']); // Show All SubAsset with Detail
+// Route::get('transaksi/{?}', [TransaksiController::class, 'showSubAsset']); // Show 1 SubAsset with Detail
+// Route::post('sub-asset/{?}', [TransaksiController::class, 'storeSubAsset']); // Insert SubAsset
+// Route::put('sub-asset/{?}', [TransaksiController::class, 'updateSubAsset']); // Edit SubAsset
