@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('NPM'); // FK ke mahasiswa
             $table->string('emergancy_call');
+            $table->string('emergancy_name');
             $table->timestamps();
         });
     }

@@ -10,7 +10,7 @@ use Exception;
 
 class HunianController extends Controller
 {
-    public function filter(Request $request)
+    public function filters(Request $request)
     {
         $status = $request->input('status'); // aktif / tidak_aktif
         $statusTransaksi = $request->input('status_transaksi'); // pending / sukses / dll
@@ -58,6 +58,57 @@ class HunianController extends Controller
             'data' => $data,
         ]);
     }
+
+    public function filter(Request $request)
+{
+    $status = $request->input('status');
+    $statusTransaksi = $request->input('status_transaksi');
+    $today = Carbon::today();
+
+    // === Ambil data dari DB quinary_sqlsrv ===
+    $data = DB::connection('quinary_sqlsrv')
+        ->table('pemesanan as p')
+        ->leftJoin('transaksi as t', 't.id_pemesanan', '=', 'p.id')
+        ->select(
+            'p.id',
+            'p.npm',
+            'p.id_sub_asset',
+            'p.tgl_pesan',
+            'p.tgl_masuk',
+            'p.tgl_keluar',
+            'p.total_bayar',
+            'p.status as status_pemesanan',
+            't.tgl_bayar',
+            't.jlh_bayar',
+            't.metode_bayar',
+            't.status as status_transaksi'
+        )
+        ->when($status === 'aktif', fn($q) => $q->where('p.tgl_keluar', '>=', $today))
+        ->when($status === 'tidak_aktif', fn($q) => $q->where('p.tgl_keluar', '<', $today))
+        ->when($statusTransaksi, fn($q) => $q->where('t.status', $statusTransaksi))
+        ->orderBy('p.tgl_masuk', 'asc')
+        ->get();
+
+    // === Ambil data mahasiswa dari DB primary ===
+    $npmList = $data->pluck('npm')->unique()->toArray();
+
+    $mahasiswa = DB::connection('secondary_sqlsrv')
+        ->table('mahasiswa')
+        ->whereIn('NPM', $npmList)
+        ->pluck('NAMA', 'NPM'); // ['2101001' => 'Ridho Akbar']
+
+    // === Gabungkan data ===
+    $data = $data->map(function ($item) use ($mahasiswa) {
+        $item->nama_mahasiswa = $mahasiswa[$item->npm] ?? '-';
+        return $item;
+    });
+
+    return response()->json([
+        'status' => 'success',
+        'total' => $data->count(),
+        'data' => $data,
+    ]);
+}
 
     public function store(Request $request)
     {

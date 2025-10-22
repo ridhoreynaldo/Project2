@@ -63,6 +63,10 @@ Route::post('asrama/hunian/store', [HunianController::class, 'store'])->name('as
 Route::put('/hunian/update-webhook', [HunianController::class, 'updateWebhook']);
 Route::put('/hunian/update-sub-asset', [HunianController::class, 'updateSubAsset']);
 
+// Pemesananan -> Request Kode Pembayaran <- Payment Gateway Kirim Kode Pembayaran
+// 
+
+
 // 🔴
 // Pemesanan
 Route::get('pemesanan', [PemesananController::class, 'indexSubAsset']); // Show All SubAsset with Detail
