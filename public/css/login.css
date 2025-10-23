@@ -14,7 +14,9 @@ body {
     /* OPSI 1: Gradien Dominan Gelap (Lebih Halus) 
         Jika Anda mencoba opsi ini dari chat sebelumnya.
     */
-    background: linear-gradient(-45deg, #0f172a 0%, #0f172a 40%, #c44569 60%, #ff6b9d 100%);
+    /* background: linear-gradient(-45deg, #0f172a 0%, #0f172a 40%, #c44569 60%, #ff6b9d 100%); */
+    background: linear-gradient(-45deg, #0f172a, #6a2a41, #0f172a, #a13a60);
+
     background-size: 200% 200%;
     animation: animatedGradient 20s ease infinite;
 
@@ -46,6 +48,26 @@ h2, h3, h4, h5, h6, .login-button {
     align-items: center;
     justify-content: center;
     padding: 40px 20px;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        rgba(255,255,255,.03) 10px,
+        rgba(255,255,255,.03) 20px
+    );
+    animation: slide 20s linear infinite;
+}
+
+@keyframes slide {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(50px, 50px); }
 }
 
 .floating-shapes {

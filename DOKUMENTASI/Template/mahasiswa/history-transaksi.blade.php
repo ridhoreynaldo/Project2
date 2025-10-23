@@ -11,7 +11,7 @@
 <div class="container">
             
     <div class="back-link">
-        <a href="{{ route('dashboard') }}" class="back-button"> {{-- Sesuaikan rute kembali --}}
+        <a href="javascript:history.back()" class="back-button"> {{-- Sesuaikan rute kembali --}}
             <i class="bi bi-arrow-left-circle-fill"></i>
             Kembali ke Dashboard
         </a>

@@ -156,7 +156,7 @@
             font-weight: 700;
             font-size: 0.95rem;
             transition: all 0.3s ease;
-            flex-shrink: 0;
+            flex-shrink: 0; /* Mencegah tombol mengecil */
         }
         
         .logout-link i {
@@ -185,7 +185,7 @@
             font-size: 1.3rem;
             color: rgba(255, 255, 255, 0.9);
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 40px; /* Jarak ke panel status baru */
             animation: fadeInUp 0.8s ease 0.4s both;
         }
 
@@ -194,17 +194,19 @@
            ======================================== */
         .status-panel {
             display: grid;
+            /* 3 kolom di desktop, 1 kolom di mobile */
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
             gap: 20px;
-            margin-bottom: 40px;
+            margin-bottom: 40px; /* Jarak ke kartu aksi */
             
+            /* Menggunakan style glassmorphism yang sama */
             background: rgba(255,255,255,0.1);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255,255,255,0.2);
             padding: 25px;
             border-radius: 15px;
             box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-            animation: fadeInUp 0.8s ease 0.6s both;
+            animation: fadeInUp 0.8s ease 0.6s both; /* Muncul setelah subtitle */
         }
 
         .status-item {
@@ -216,7 +218,7 @@
         }
 
         .status-icon {
-            font-size: 2.5rem;
+            font-size: 2.5rem; /* 40px */
             color: white;
             opacity: 0.8;
         }
@@ -239,9 +241,10 @@
             color: white;
         }
 
+        /* Style khusus untuk item highlight (Sisa Waktu) */
         .status-item.highlight .status-value {
             font-size: 1.6rem;
-            color: #fff2a3;
+            color: #fff2a3; /* Kuning muda agar menonjol */
             text-shadow: 0 0 10px rgba(255, 242, 163, 0.5);
         }
         
@@ -282,11 +285,10 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* Animasi delay untuk kartu (diperbarui untuk 4 kartu) */
+        /* Animasi delay untuk kartu (di-update) */
         .cards-container .card:nth-child(1) { animation-delay: 0.8s; }
         .cards-container .card:nth-child(2) { animation-delay: 1.0s; }
-        .cards-container .card:nth-child(3) { animation-delay: 1.2s; }
-        .cards-container .card:nth-child(4) { animation-delay: 1.4s; }
+        .cards-container .card:nth-child(3) { animation-delay: 1.2s; } 
 
         .card::before {
             content: '';
@@ -348,16 +350,16 @@
                 flex-direction: column;
                 gap: 15px;
                 padding: 20px;
-                align-items: stretch;
+                align-items: stretch; /* Penuhkan lebar */
             }
             
             .welcome-message h3 {
                 font-size: 1rem;
-                text-align: center;
+                text-align: center; /* Ratakan tengah di mobile */
             }
             
             .logout-link {
-                text-align: center;
+                text-align: center; /* Ratakan tengah di mobile */
                 padding: 5px 0;
             }
 
@@ -370,8 +372,9 @@
                 margin-bottom: 30px;
             }
 
+            /* --- CSS BARU UNTUK PANEL STATUS (MOBILE) --- */
             .status-panel {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr; /* Pastikan 1 kolom */
                 padding: 20px;
                 gap: 10px;
                 margin-bottom: 30px;
@@ -381,14 +384,16 @@
                 padding: 5px 0;
             }
             .status-icon {
-                font-size: 2rem;
+                font-size: 2rem; /* Kecilkan ikon */
             }
             .status-value {
                 font-size: 1.2rem;
             }
             .status-item.highlight .status-value {
-                font-size: 1.3rem;
+                font-size: 1.3rem; /* Sedikit lebih besar */
             }
+            /* --- AKHIR CSS BARU --- */
+
 
             .cards-container {
                 grid-template-columns: 1fr;
@@ -411,7 +416,7 @@
                 <div class="welcome-message">
                     <h3>Selamat datang, <span>{{ Session::get('mahasiswa')->LOGINUSERNAME }}</span></h3>
                 </div>
-                <a href="{{ route('logout') }}" class="logout-link">
+                <a href="/logout" class="logout-link">
                     Logout <i class="bi bi-box-arrow-right"></i>
                 </a>
             </div>
@@ -445,28 +450,22 @@
             
             <div class="cards-container">
                 
-                <a href="{{ route('profil') }}" class="card">
+                <a href="/profil" class="card">
                     <div class="card-icon"><i class="bi bi-person-badge"></i></div>
                     <h2>Lengkapi Profil</h2>
                     <p>Pastikan data diri Anda lengkap dan valid sebelum mendaftar.</p>
                 </a>
 
-                <a href="{{ route('pemesanan-kamar') }}" class="card">
+                <a href="/pendaftaran-kamar" class="card">
                     <div class="card-icon"><i class="bi bi-door-open-fill"></i></div>
                     <h2>Pendaftaran Kamar</h2>
                     <p>Lihat ketersediaan kamar, pilih, dan lakukan pendaftaran.</p>
                 </a>
 
-                <a href="{{ route('history-transaksi') }}" class="card">
+                <a href="/history-transaksi" class="card">
                     <div class="card-icon"><i class="bi bi-clock-history"></i></div>
                     <h2>Riwayat Uang Pengganti Asrama</h2>
                     <p>Lihat riwayat uang pengganti asrama anda.</p>
-                </a>
-
-                <a href="{{ route('contact-admin') }}" class="card">
-                    <div class="card-icon"><i class="bi bi-headset"></i></div>
-                    <h2>Contact Admin</h2>
-                    <p>Hubungi admin untuk bantuan atau pertanyaan seputar asrama.</p>
                 </a>
             </div>
 

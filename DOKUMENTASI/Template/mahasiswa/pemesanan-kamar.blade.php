@@ -448,7 +448,7 @@
             <h2 class="page-title">Formulir Pemesanan Kamar</h2>
             <p class="subtitle">Silakan pilih tanggal masuk dan durasi tinggal Anda.</p>
 
-            <form action="{{ route('kode-pembayaran') }}" method="GET" class="booking-form-card">
+            <form action="pembayaran.html" method="GET" class="booking-form-card">
                 <div class="booking-icon">
                     <i class="bi bi-calendar-check"></i>
                 </div>

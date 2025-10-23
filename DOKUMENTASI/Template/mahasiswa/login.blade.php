@@ -36,7 +36,7 @@
         <button type="submit" class="login-button">Login</button>
 
         <div class="back-link">
-            <a href="{{ route('landing-page') }}"> 
+            <a href="/"> 
                 <i class="bi bi-arrow-left-circle"></i>
                 Kembali ke Beranda
             </a>
