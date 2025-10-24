@@ -13,15 +13,18 @@
     <div class="container">
         
         <div class="back-link">
-            <a href="/asrama/mahasiswa/dashboard"> 
+            <a href="{{ route('dashboard') }}"> 
                 <i class="bi bi-arrow-left-circle-fill"></i>
                 Kembali ke Dashboard
             </a>
         </div>
 
-        <form method="POST" action="/profil/update" class="profile-card">
+        {{-- <form method="POST" action="/profil/update" class="profile-card"> --}}
+        <form method="get" action="{{ route('pemesanan-kamar') }}" class="profile-card">
+
             @csrf
-            @method('PUT') 
+            {{-- @method('PUT')  --}}
+            @method('get') 
 
             <h2>Profil Mahasiswa</h2>
             <p class="form-subtitle">Data dengan tanda <span>*</span> wajib diisi untuk mendaftar asrama.</p>
