@@ -141,7 +141,7 @@
 document.addEventListener('DOMContentLoaded', async () => {
     // ambil NPM dari session Laravel
     const npm = `{{ Session::get('mahasiswa')->LOGINUSERNAME }}`; 
-    const apiUrl = `/api/asrama/mahasiswa/${npm}`;
+    const apiUrl = `https://portaluniversitasquality.ac.id:6923/Project2/public/api/asrama/mahasiswa/${npm}`;
 
     try {
         const response = await fetch(apiUrl);
