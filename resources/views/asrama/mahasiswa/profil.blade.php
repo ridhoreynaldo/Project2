@@ -24,6 +24,7 @@
 
             @csrf
             {{-- @method('PUT')  --}}
+            {{--  --}}
             @method('get') 
 
             <h2>Profil Mahasiswa</h2>
