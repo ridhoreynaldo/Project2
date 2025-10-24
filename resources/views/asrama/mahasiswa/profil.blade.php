@@ -136,3 +136,65 @@
         </form>
     </div>
 @endsection
+@push('scripts')
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+    // ambil NPM dari session Laravel
+    const npm = `{{ Session::get('mahasiswa')->LOGINUSERNAME }}`; 
+    const apiUrl = `/api/asrama/mahasiswa/${npm}`;
+
+    try {
+        const response = await fetch(apiUrl);
+        const result = await response.json();
+
+        if (result.status === 'success') {
+            const data = result.data;
+
+            // isi field otomatis
+            document.getElementById('npm').value = data.NPM || '';
+            document.getElementById('nama').value = data.NAMA || '';
+            document.getElementById('tgllahir').value = formatTanggal(data.TGLLAHIR);
+            document.getElementById('jenis_kelamin').value = data.JENISKELAMIN === 'PR' ? 'Perempuan' : 'Laki-laki';
+            document.getElementById('agama').value = data.AGAMA || '';
+            document.getElementById('tgl_masuk').value = formatTanggal(data.TGLMASUK);
+            document.getElementById('universitas').value = data.UNIVERSITAS || '';
+            document.getElementById('fakultas').value = data.fakultas || '';
+            document.getElementById('prodi').value = data.PRODI || '';
+            document.getElementById('stambuk').value = data.STAMBUK || '';
+            document.getElementById('semester').value = hitungSemester(data.TGLMASUK);
+            document.getElementById('nik').value = data.nik || '';
+            document.getElementById('hp').value = data.HP || '';
+            document.getElementById('alamat').value = data.ALAMAT || '';
+            document.getElementById('nama_ayah').value = data.NAMAAYAH || '';
+            document.getElementById('nama_ibu').value = data.NAMAIBU || '';
+            document.getElementById('nomor_ortu').value = data.nomor_ortu || '';
+        } else {
+            console.error('Data tidak ditemukan');
+        }
+
+    } catch (error) {
+        console.error('Gagal memuat data:', error);
+    }
+});
+
+// fungsi bantu ubah tanggal ke format YYYY-MM-DD atau Indo
+function formatTanggal(dateString) {
+    if (!dateString) return '';
+    const date = new Date(dateString);
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = date.getFullYear();
+    return `${day}-${month}-${year}`; // format: DD-MM-YYYY
+}
+
+// fungsi bantu hitung semester berdasarkan tanggal masuk
+function hitungSemester(tglMasuk) {
+    if (!tglMasuk) return '';
+    const masuk = new Date(tglMasuk);
+    const sekarang = new Date();
+    const diffBulan = (sekarang.getFullYear() - masuk.getFullYear()) * 12 + (sekarang.getMonth() - masuk.getMonth());
+    const semester = Math.floor(diffBulan / 6) + 1;
+    return semester > 0 ? semester : 1;
+}
+</script>
+@endpush

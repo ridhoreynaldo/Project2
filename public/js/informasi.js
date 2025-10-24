@@ -9,7 +9,8 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     }, {
-        threshold: 0.2 // makin kecil = makin cepat muncul
+        // threshold: 0.2 // makin kecil = makin cepat muncul
+        threshold: window.innerWidth < 480 ? 0.05 : 0.2
     });
 
     sections.forEach(section => observer.observe(section));

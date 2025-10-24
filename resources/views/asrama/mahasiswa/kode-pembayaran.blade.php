@@ -378,7 +378,7 @@
         <div class="container">
             
             <div class="logo">
-                <img src="/logo/logo_asrama.png" alt="Logo Asrama" class="logo-img">
+                <img src="{{ asset('logo/logo_asrama.png') }}" alt="Logo Asrama" class="logo-img">
             </div>
             
             <h2 class="page-title">Selesaikan Pembayaran Anda</h2>

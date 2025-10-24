@@ -92,7 +92,7 @@
         <div class="price-section fade-in">
             <h2><i class="bi bi-tag-fill"></i> Uang Pengganti Asrama</h2>
             <p style="color: rgba(255,255,255,0.85); margin-bottom: 20px;">
-                Harga terjangkau dengan fasilitas premium untuk kenyamanan Anda
+                {{-- Harga terjangkau dengan fasilitas premium untuk kenyamanan Anda --}}
             </p>
             
             <div class="price-cards">

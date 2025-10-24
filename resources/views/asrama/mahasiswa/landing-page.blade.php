@@ -40,6 +40,20 @@
         </a>
     </div>
 
+    {{-- ========== BAGIAN GALERI KEGIATAN ========== --}}
+{{-- <section class="gallery-section fade-section">
+    <h2 class="section-title">Kegiatan Asrama</h2>
+    <div class="gallery-container">
+        <div class="gallery-track">
+            <img src="{{ asset('images/kegiatan1.jpg') }}" alt="Kegiatan 1">
+            <img src="{{ asset('images/kegiatan2.jpg') }}" alt="Kegiatan 2">
+            <img src="{{ asset('images/kegiatan3.jpg') }}" alt="Kegiatan 3">
+            <img src="{{ asset('images/kegiatan4.jpg') }}" alt="Kegiatan 4">
+            <img src="{{ asset('images/kegiatan5.jpg') }}" alt="Kegiatan 5">
+        </div>
+    </div>
+</section> --}}
+
     {{-- ========== BAGIAN KEUNGGULAN UTAMA ========== --}}
     <section class="features-section fade-section">
         <h2 class="section-title">Keunggulan Utama</h2>

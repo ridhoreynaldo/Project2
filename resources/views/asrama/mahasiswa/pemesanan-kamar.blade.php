@@ -492,7 +492,7 @@
                         </label>
                         
                         <label class="payment-radio-small"> <input type="radio" name="metode_pembayaran" value="bri">
-                            <img src="https://upload.wikimedia.org/wikipedia/id/2/23/Logo_BRI.png" alt="BRI" class="bank-logo-small">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/BRI_2020.svg" alt="BRI" class="bank-logo-small">
                             <span class="bank-name"></span>
                         </label>
                         
