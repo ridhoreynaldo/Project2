@@ -42,7 +42,7 @@
             </a>
         </div>
     </form>
-
+    @include('partials.footer')
 </div>
 @endsection
 {{-- Mengakhiri bagian konten --}}

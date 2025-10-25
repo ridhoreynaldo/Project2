@@ -24,7 +24,6 @@
 
             @csrf
             {{-- @method('PUT')  --}}
-            {{--  --}}
             @method('get') 
 
             <h2>Profil Mahasiswa</h2>
@@ -89,7 +88,7 @@
                     <input type="text" id="stambuk" value="" readonly>
                 </div>
                 
-                <h3>Data Kontak & Keluarga</h3>
+                <h3>Data Kontak & Keluarga222</h3>
 
                 <div class="input-group">
                     <label for="nik">NIK (KTP) <span>*</span></label>

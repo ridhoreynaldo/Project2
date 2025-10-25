@@ -11,7 +11,7 @@ body {
     font-family: 'Lato', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     overflow-x: hidden;
     color: white;
-    background: linear-gradient(-45deg, #0f172a, #a8325c, #0f172a, #e05588);
+    background: linear-gradient(-45deg, #0f172a, #911140, #0f172a, #911140);
     background-size: 200% 200%;
     animation: animatedGradient 25s ease infinite;
 }

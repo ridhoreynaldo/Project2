@@ -260,3 +260,10 @@ h2, h3, h4, h5, h6, .login-button {
         font-size: 1.6rem;
     }
 }
+
+.footer {
+    margin-top: 80px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.8);
+}
